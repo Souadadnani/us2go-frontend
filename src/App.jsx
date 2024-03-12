@@ -1,15 +1,15 @@
-
 import { Outlet } from 'react-router-dom';
 import Nav from './components/navigation/Nav'
 import { useState } from 'react'
 
+
 function App() {
-  const [usuario, setUsuario] = useState(null); 
+  const [logeado, setLogeado] = useState(null); 
 
   return (
     <>
-      <Nav></Nav>
-      <Outlet context={[usuario, setUsuario]}></Outlet>
+      <Nav logeado={logeado} setLogeado={setLogeado}></Nav>
+      <Outlet context={[logeado, setLogeado]}></Outlet>
     </>
   )
 }
