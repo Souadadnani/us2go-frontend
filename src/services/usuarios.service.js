@@ -1,6 +1,6 @@
 import { URL_SERVER } from "../../constantes";
 
-const registrar = (usuario) =>{
+const registrar = (usuario, setLogueado) =>{
     const options = {
         method: 'POST',
         headers: {
@@ -13,10 +13,13 @@ const registrar = (usuario) =>{
             if(response.ok) return response.json();
             else{throw new Error(`Error en la solicitud ${response.statusText}`)}
         })
+        .then(usuario=>{
+            console.log(usuario);
+        })
         .catch(error=>{console.error(error)});
 }
 
-const login = (usuario, setLogeado) =>{
+const login = (usuario, setLogueado, navigate) =>{
     const options = {
         method: 'POST',
         headers: {
@@ -29,18 +32,16 @@ const login = (usuario, setLogeado) =>{
             if(response.ok) return response.json();
             else{throw new Error(`Error en la solicitud ${response.statusText}`)}
         })
-        .than(data=>{
-            if(data.length > 0){
-                const userServer = data[0];
-                setLogeado(userServer.usuario.nombre);
-                localStorage.setItem('token', data.token);
-            }else{
-                throw new Error("Usuario/contraseña incorrectos")
+        .then(data=>{
+            localStorage.setItem("token", data.token);
+            const user ={
+                email: data.usuario.email,
+                nombre: data.usuario.nombre
             }
+            setLogueado(user);
+            navigate("/"); 
         })
         .catch(error=>{console.error(error)});
 }
-
-
 
 export {registrar, login}

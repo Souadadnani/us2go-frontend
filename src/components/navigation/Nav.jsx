@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 export default function Nav() {
     return(
         <nav>
+            <h1>us<span>2</span>go</h1>
             <ul>
                 <li><Link to="/">Inicio</Link></li>
                 <li><Link to="/registrar">Registrar</Link></li>

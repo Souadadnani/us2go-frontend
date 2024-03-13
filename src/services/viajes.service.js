@@ -1,21 +1,21 @@
 import { URL_SERVER } from "../../constantes";
 
-const getViajesPublicados = (setViajes, setActualizados, mensaje) =>   {
+const getViajesPublicados = (setViajes, setCargados, setMensaje) =>   {
     fetch(`${URL_SERVER}viajes`)
         .then(response=>{
             if(response.ok){
-                setActualizados(false);
+                setCargados(false);
                 return response.json();
             }else{ throw new Error(`Error en la solicitud ${response.statusText}`);}
         })
         .then(viajes=>{
             if(viajes.length > 0) setViajes(viajes);
-            else {mensaje = `Aún no hay viajes publicados`};
+            else {setMensaje(`Aún no hay viajes publicados`)};
         })
         .catch(error=>{console.error(error)})
 }
 
-const publicarViaje = (viaje) =>{
+const publicarViaje = (viaje, setPublicados) =>{
     const options = {
         method: 'POST',
         headers: {
@@ -24,10 +24,12 @@ const publicarViaje = (viaje) =>{
         },
         body: JSON.stringify(viaje)
     }
-    fetch(`${URL_SERVER}viajes/publicar`)
+    fetch(`${URL_SERVER}viajes/publicar`, options)
         .then(response=>{
-            if(response.ok) return response.json();
-            else{throw new Error(`Error en la solicitud ${response.statusText}`)}
+            if(response.ok) {
+                setPublicados(false);
+                return response.json();
+            }else{throw new Error(`Error en la solicitud ${response.statusText}`)}
         })
         .catch(error=>{console.error(error)})
 }

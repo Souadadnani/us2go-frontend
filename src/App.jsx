@@ -1,15 +1,16 @@
 import { Outlet } from 'react-router-dom';
 import Nav from './components/navigation/Nav'
 import { useState } from 'react'
+import "./styles/globals.css"
 
 
 function App() {
-  const [logeado, setLogeado] = useState(null); 
+  const [logueado, setLogueado] = useState(null); 
 
   return (
     <>
-      <Nav logeado={logeado} setLogeado={setLogeado}></Nav>
-      <Outlet context={[logeado, setLogeado]}></Outlet>
+      <Nav logueado={logueado} setLogueado={setLogueado}></Nav>
+      <Outlet context={[logueado, setLogueado]}></Outlet>
     </>
   )
 }
