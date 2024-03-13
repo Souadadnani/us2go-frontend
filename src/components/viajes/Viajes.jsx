@@ -7,11 +7,10 @@ export default function Viajes() {
 
     const [cargados, setCargados] = useState(false);
     const [viajes, setViajes] = useState([]);
-    const [mensaje, setMensaje] = useState("");
 
     useEffect(()=>{
-        getViajesPublicados(setViajes, setCargados, setMensaje);
-    }, [cargados, mensaje]);
+        getViajesPublicados(setViajes, setCargados);
+    }, [cargados]);
 
     return(
         <main>

@@ -1,0 +1,16 @@
+.logout{
+    border-radius: 40px;
+    font-size: 15px;
+    background-color: rgb(80, 127, 255);
+    margin: 0 8px;
+}
+
+.login{
+    font-size: 16px;
+    color:  rgb(242, 137, 33);
+}
+
+.sesion{
+    margin: 0;
+    padding: 0;
+}

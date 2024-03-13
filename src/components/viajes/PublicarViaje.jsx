@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useOutletContext } from "react-router-dom";
 import { publicarViaje } from "../../services/viajes.service";
 
 export default function PublicarViaje() {
@@ -7,7 +8,9 @@ export default function PublicarViaje() {
     const [itinerarios, setItinerarios] = useState("");
     const [fechaInicio, setFechaInicio] = useState("");
     const [fechaFin, setFechaFin] = useState("");
+    const [logueado, setLogueado] = useOutletContext();
     const [publicados, setPublicados] = useState(false);
+
     const viaje = {
         destino,
         itinerarios,
@@ -16,12 +19,12 @@ export default function PublicarViaje() {
     }
     const publicar = (e) =>{
         e.preventDefault(e);
-        publicarViaje(viaje, setPublicados);
+        publicarViaje(viaje, logueado, setPublicados);
     }
     return(
         <form onSubmit={publicar}>
             <label>Destino</label>
-            <input type="text" placeholder="tu destino" value={destino} onChange={(e)=>setDestino(e.target.value)}/>
+            <input type="text" placeholder="Ciudad, País" value={destino} onChange={(e)=>setDestino(e.target.value)}/>
             <label>Itinerarios</label>
             <input type="text" placeholder="Itinerario1, Itinerario2..." value={itinerarios} onChange={(e)=>setItinerarios(e.target.value)}/>
             <label>Fecha Inicio</label>

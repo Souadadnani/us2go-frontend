@@ -14,7 +14,7 @@ const registrar = (usuario, setLogueado) =>{
             else{throw new Error(`Error en la solicitud ${response.statusText}`)}
         })
         .then(usuario=>{
-            console.log(usuario);
+            setLogueado(usuario);
         })
         .catch(error=>{console.error(error)});
 }

@@ -10,12 +10,11 @@ const getViajesPublicados = (setViajes, setCargados, setMensaje) =>   {
         })
         .then(viajes=>{
             if(viajes.length > 0) setViajes(viajes);
-            else {setMensaje(`Aún no hay viajes publicados`)};
         })
         .catch(error=>{console.error(error)})
 }
 
-const publicarViaje = (viaje, setPublicados) =>{
+const publicarViaje = (viaje,logueado, setPublicados) =>{
     const options = {
         method: 'POST',
         headers: {
@@ -30,6 +29,11 @@ const publicarViaje = (viaje, setPublicados) =>{
                 setPublicados(false);
                 return response.json();
             }else{throw new Error(`Error en la solicitud ${response.statusText}`)}
+        })
+        .then(data=>{
+            if(!logueado){
+                setMensaje("Inicia sesión o registrarte para poder publicar tu viaje");
+            }
         })
         .catch(error=>{console.error(error)})
 }
