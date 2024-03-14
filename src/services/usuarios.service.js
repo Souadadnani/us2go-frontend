@@ -10,11 +10,11 @@ const registrar = (usuario, navigate) =>{
     }
     fetch(`${URL_SERVER}usuarios/registrar`, options)
         .then(response=>{
-            if(response.ok) return response.json();
+            if(response.ok) {
+                navigate("/login"); 
+                return response.json();
+            }
             else{throw new Error(`Error en la solicitud ${response.statusText}`)}
-        })
-        .then(usuario=>{
-            navigate("/login"); 
         })
         .catch(error=>{console.error(error)});
 }
