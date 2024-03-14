@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { publicarViaje } from "../../services/viajes.service";
 
 export default function PublicarViaje() {
@@ -10,6 +10,7 @@ export default function PublicarViaje() {
     const [fechaFin, setFechaFin] = useState("");
     const [logueado, setLogueado] = useOutletContext();
     const [publicados, setPublicados] = useState(false);
+    const navigate = useNavigate();
 
     const viaje = {
         destino,
@@ -19,7 +20,7 @@ export default function PublicarViaje() {
     }
     const publicar = (e) =>{
         e.preventDefault(e);
-        publicarViaje(viaje, logueado, setPublicados);
+        publicarViaje(viaje, logueado, setPublicados, navigate);
     }
     return(
         <form onSubmit={publicar}>

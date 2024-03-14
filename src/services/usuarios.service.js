@@ -1,6 +1,6 @@
 import { URL_SERVER } from "../../constantes";
 
-const registrar = (usuario, setLogueado) =>{
+const registrar = (usuario, navigate) =>{
     const options = {
         method: 'POST',
         headers: {
@@ -14,7 +14,7 @@ const registrar = (usuario, setLogueado) =>{
             else{throw new Error(`Error en la solicitud ${response.statusText}`)}
         })
         .then(usuario=>{
-            setLogueado(usuario);
+            navigate("/login"); 
         })
         .catch(error=>{console.error(error)});
 }

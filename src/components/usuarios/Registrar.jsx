@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { registrar } from "../../services/usuarios.service";
 
 
@@ -10,7 +10,8 @@ export default function Registrar() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [telefono, setTelefono] = useState("");
-    const [logueado, setLogueado] = useOutletContext();
+    const navigate = useNavigate();
+
     const usuario = {
         email,
         nombre,
@@ -21,7 +22,7 @@ export default function Registrar() {
 
     const doRegistro = (e) =>{
         e.preventDefault();
-        registrar(usuario, setLogueado);
+        registrar(usuario, navigate);
     }
     
     return (

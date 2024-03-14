@@ -14,7 +14,7 @@ const getViajesPublicados = (setViajes, setCargados, setMensaje) =>   {
         .catch(error=>{console.error(error)})
 }
 
-const publicarViaje = (viaje,logueado, setPublicados) =>{
+const publicarViaje = (viaje,logueado, setPublicados, navigate) =>{
     const options = {
         method: 'POST',
         headers: {
@@ -31,8 +31,8 @@ const publicarViaje = (viaje,logueado, setPublicados) =>{
             }else{throw new Error(`Error en la solicitud ${response.statusText}`)}
         })
         .then(data=>{
-            if(!logueado){
-                setMensaje("Inicia sesión o registrarte para poder publicar tu viaje");
+            if(logueado){
+                navigate("/");
             }
         })
         .catch(error=>{console.error(error)})
